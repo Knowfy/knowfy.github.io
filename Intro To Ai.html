@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to AI | Knowfiy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .module-content {
+      display: none;
+    }
+
+    .module.open .module-content {
+      display: block;
+    }
+
+    .transition-max-height {
+      transition: max-height 0.4s ease;
+      overflow: hidden;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="index.html">
+        <img src="Website Logo.png" alt="Knowfiy Logo" class="h-8 w-auto">
+      </a>
+      <a href="index.html" class="text-sm text-gray-600 hover:text-black transition">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-10 space-y-6">
+    <div class="fade-up">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">Introduction to AI</h2>
+      <p class="text-gray-600 mb-6 leading-relaxed">
+        Explore the fundamentals of Artificial Intelligence and its real-world applications. 
+        This beginner-friendly course introduces key concepts, ethics, and use cases of AI in modern life.
+      </p>
+      <img src="Intro To Ai.jpg" alt="AI Course" class="w-full h-64 object-cover rounded-lg mb-8">
+    </div>
+
+    <!-- Modules -->
+    <div class="space-y-4">
+      
+      <!-- Module 1 -->
+      <div class="fade-up module bg-white rounded-lg shadow p-5">
+        <button onclick="toggleModule(this)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-black focus:outline-none">
+          Module 1: What is AI?
+          <span class="toggle-icon">➕</span>
+        </button>
+        <div class="module-content mt-4 transition-max-height max-h-0">
+          <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+            <li>Definition of AI</li>
+            <li>History of Artificial Intelligence</li>
+            <li>Types of AI: Narrow vs. General AI</li>
+            <li>Real-world Examples</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="fade-up module bg-white rounded-lg shadow p-5">
+        <button onclick="toggleModule(this)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-black focus:outline-none">
+          Module 2: How AI Works
+          <span class="toggle-icon">➕</span>
+        </button>
+        <div class="module-content mt-4 transition-max-height max-h-0">
+          <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+            <li>Machine Learning Basics</li>
+            <li>Data and Algorithms</li>
+            <li>Training and Inference</li>
+            <li>Neural Networks Introduction</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="fade-up module bg-white rounded-lg shadow p-5">
+        <button onclick="toggleModule(this)" class="w-full text-left flex justify-between items-center font-semibold text-lg text-black focus:outline-none">
+          Module 3: Ethics & Future of AI
+          <span class="toggle-icon">➕</span>
+        </button>
+        <div class="module-content mt-4 transition-max-height max-h-0">
+          <ul class="list-disc list-inside text-gray-700 space-y-2 pl-4">
+            <li>Bias and Fairness in AI</li>
+            <li>Jobs and Automation</li>
+            <li>AI in Healthcare, Education, and Law</li>
+            <li>What’s Next for AI?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleModule(btn) {
+      const module = btn.parentElement;
+      module.classList.toggle('open');
+      const icon = btn.querySelector('.toggle-icon');
+      const content = module.querySelector('.module-content');
+
+      if (module.classList.contains('open')) {
+        icon.textContent = '➖';
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        icon.textContent = '➕';
+        content.style.maxHeight = "0";
+      }
+    }
+
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
